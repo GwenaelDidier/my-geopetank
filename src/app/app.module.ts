@@ -2,17 +2,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { MaterialModule } from '@angular/material';
+import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
+import { MyToolbarComponent } from './my-toolbar/my-toolbar.component';
+import { MyBoulodromesComponent } from './my-boulodromes/my-boulodromes.component';
+
+// Must export the config
+export const firebaseConfig = {
+  apiKey: 'AIzaSyCemkIWie5i2g33Z4D6B12rIkfCJlYT-bg',
+  authDomain: 'polymer-geopetank.firebaseapp.com',
+  databaseURL: 'https://polymer-geopetank.firebaseio.com',
+  storageBucket: ''
+};
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MyToolbarComponent,
+    MyBoulodromesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
