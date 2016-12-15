@@ -1,0 +1,23 @@
+<h1>Boulodromes</h1>
+<div *ngIf="boulodromes.length === 0">
+    <md-progress-circle mode="indeterminate"></md-progress-circle>
+</div>
+<md-list>
+    <md-list-item *ngFor="let boulodrome of boulodromes | async">
+        <div class="itemBoulodrome">
+        	<div class="itemBoulodromeDescription">
+        		<h4 md-line>{{boulodrome.nom}} - {{boulodrome.secteur}}</h4>
+	            <p md-line>
+	                <md-icon>map</md-icon>
+	                <span>{{boulodrome.latitude}} / {{boulodrome.longitude}}</span>
+	            </p>
+        	</div>
+        	<div class="itemBoulodromeDescription">
+        		<button md-icon-button (click)="modifBoulodrome(boulodrome)">
+			        <md-icon>info</md-icon>
+			     </button>
+        	</div>
+            
+        </div>
+    </md-list-item>
+</md-list>
