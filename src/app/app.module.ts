@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
+//import { LayoutModule } from 'ng2-flex-layout';
 
 import { AppComponent } from './app.component';
 import { MyToolbarComponent } from './my-toolbar/my-toolbar.component';
 import { MyBoulodromesComponent } from './my-boulodromes/my-boulodromes.component';
+import { MyListFilterPipe } from './my-list-filter.pipe';
 
 // Must export the config
 export const firebaseConfig = {
@@ -21,14 +23,16 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     MyToolbarComponent,
-    MyBoulodromesComponent
+    MyBoulodromesComponent,
+    MyListFilterPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    //LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

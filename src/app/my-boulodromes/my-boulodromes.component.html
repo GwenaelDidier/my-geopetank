@@ -1,23 +1,108 @@
-<h1>Boulodromes</h1>
-<div *ngIf="boulodromes.length === 0">
-    <md-progress-circle mode="indeterminate"></md-progress-circle>
+<div class="flex-container" layout="row" layout-align="center center">
+	<div flex="20">
+		<h1>Boulodromes</h1>
+		<md-input placeholder="recherche" [(ngModel)]="recherche" name="recherche"></md-input>
+	 	<md-list>
+            <md-list-item *ngFor="let boulodrome of boulodromes | async">
+                <div class="itemBoulodrome">
+                    <div class="itemBoulodromeDescription">
+                        <h4 md-line>{{boulodrome.nom}} - {{boulodrome.secteur}}</h4>
+                        <!--<p md-line>
+                            <md-icon>map</md-icon>
+                            <span>{{boulodrome.latitude}} / {{boulodrome.longitude}}</span>
+                        </p>-->
+                    </div>
+                    <div class="itemBoulodromeActionn">
+                        <button md-icon-button (click)="modifBoulodrome(boulodrome)">
+                            <md-icon>info</md-icon>
+                        </button>
+                    </div>
+                </div>
+            </md-list-item>
+        </md-list>
+	 </div>
+	 <div flex="80">
+	 	<div id="contentBoulodrome">
+		 	<h1>{{title}}</h1>
+		 	<form *ngIf="boulodromeIsSelected" (submit)="saveBoulodrome()" >
+		 	
+		 		<div layout="row">
+		 			<md-input placeholder="Ville" disabled value="{{ville}}"></md-input>
+		 		</div>
+
+		 		<div layout="row">
+		 			<md-input placeholder="Departement" disabled value="{{departement}}"></md-input>
+		 		</div>
+
+		 		<div layout="row">
+		 			<md-input placeholder="Secteur" disabled value="{{secteur}}"></md-input>
+		 		</div>
+
+		 		<div layout="row">
+		 			<md-input placeholder="Type" value="{{type}}" [(ngModel)]="type" name="type"></md-input>
+		 		</div>
+
+		 		<div layout="row">
+		 			<md-input placeholder="Adresse" value="{{adresse}}" [(ngModel)]="adresse" name="adresse"></md-input>
+		 		</div>
+
+		 		<div layout="row">
+		 			<md-input placeholder="Latitude" value="{{latitude}}" [(ngModel)]="latitude" name="latitude"></md-input>
+		 			<md-input placeholder="Longitude" value="{{longitude}}" [(ngModel)]="longitude" name="longitude"></md-input>
+		 		</div>
+
+
+		 		<div layout="row" class="flex-center">
+		 			<md-input type="number" placeholder="Nombre de terrains" value="{{nbTerrains}}" [(ngModel)]="nbTerrains" name="nbTerrains"></md-input>
+		 			<md-checkbox [(ngModel)]="couvert" name="couvert" color="primary" >
+				      Couvert
+				    </md-checkbox>
+		 		</div>
+
+		 		<div layout="row">
+		 			<button md-raised-button color="primary" (click)="saveBoulodrome()">Valider</button>
+		 		</div>
+
+		 	</form>
+		 </div>
+	 </div>
 </div>
-<md-list>
-    <md-list-item *ngFor="let boulodrome of boulodromes | async">
-        <div class="itemBoulodrome">
-        	<div class="itemBoulodromeDescription">
-        		<h4 md-line>{{boulodrome.nom}} - {{boulodrome.secteur}}</h4>
-	            <p md-line>
-	                <md-icon>map</md-icon>
-	                <span>{{boulodrome.latitude}} / {{boulodrome.longitude}}</span>
-	            </p>
-        	</div>
-        	<div class="itemBoulodromeDescription">
-        		<button md-icon-button (click)="modifBoulodrome(boulodrome)">
-			        <md-icon>info</md-icon>
-			     </button>
-        	</div>
-            
-        </div>
-    </md-list-item>
-</md-list>
+
+
+
+
+
+
+
+<!-- <md-sidenav-layout>
+    <md-sidenav mode="side" opened="true">
+            <md-list>
+                <md-list-item *ngFor="let boulodrome of boulodromes | async">
+                    <div class="itemBoulodrome">
+                        <div class="itemBoulodromeDescription">
+                            <h4 md-line>{{boulodrome.nom}} - {{boulodrome.secteur}}</h4>
+                            <p md-line>
+                                <md-icon>map</md-icon>
+                                <span>{{boulodrome.latitude}} / {{boulodrome.longitude}}</span>
+                            </p>
+                        </div>
+                        <div class="itemBoulodromeDescription">
+                            <button md-icon-button (click)="modifBoulodrome(boulodrome)">
+                                <md-icon>info</md-icon>
+                            </button>
+                        </div>
+                    </div>
+                </md-list-item>
+            </md-list>
+    </md-sidenav>
+    <div class="my-content">
+        <h1>Boulodromes</h1>
+        <md-grid-list cols="4" [style.background]="'lightblue'">
+		   <md-grid-tile>One</md-grid-tile>
+		   <md-grid-tile>Two</md-grid-tile>
+		   <md-grid-tile>Three</md-grid-tile>
+		   <md-grid-tile>Four</md-grid-tile>
+		</md-grid-list>
+    </div>
+</md-sidenav-layout>
+ -->
