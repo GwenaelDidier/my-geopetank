@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { MyToolbarComponent } from './my-toolbar/my-toolbar.component';
 import { MyBoulodromesComponent } from './my-boulodromes/my-boulodromes.component';
 import { MyListFilterPipe } from './my-list-filter.pipe';
-import { MyAccueilComponent } from './my-accueil/my-accueil.component';
+//import { MyAccueilComponent } from './my-accueil/my-accueil.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -25,8 +25,8 @@ export const firebaseConfig = {
     AppComponent,
     MyToolbarComponent,
     MyBoulodromesComponent,
-    MyListFilterPipe
-    MyAccueilComponent
+    MyListFilterPipe,
+    //MyAccueilComponent
   ],
   imports: [
     BrowserModule,

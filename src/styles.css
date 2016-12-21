@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
+@import '../node_modules/ng2-flex-layout/dist/ng2-flex-layout.css';
+
+body{
+	font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-size: 14px;
+  color: #546E7A;
+}
+  

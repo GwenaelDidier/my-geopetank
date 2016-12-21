@@ -26,3 +26,28 @@
   background-blend-mode: multiply;
   background-size: 100%;
 }
+
+article.intro{
+	padding: 64px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro-rows{
+	margin-top: 64px;
+}
+
+.intro-row{
+	max-width: 920px;
+  margin: 0 0 60px 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro-row > .intro-text{
+	max-width: 50%;
+}
+
+.intro-row > .intro-img{
+	max-width: 50%;
+}
