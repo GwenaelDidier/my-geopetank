@@ -18,7 +18,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "styles.css", "./node_modules/ng2-flex-layout/dist/ng2-flex-layout.css"
       ],
       "scripts": [],
       "environments": {
