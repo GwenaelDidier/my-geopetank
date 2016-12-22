@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
 
 @Component({
   selector: 'app-my-toolbar',
@@ -7,9 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyToolbarComponent implements OnInit {
 
-  constructor() { }
+  user = {};
 
-  ngOnInit() {
+  constructor(
+    public af: AngularFire
+  ) {
+    this.af.auth.subscribe(user => {
+      if(user) {
+        // user logged in
+        this.user = user;
+        console.log(this.user);
+      }
+      else {
+        // user not logged in
+        this.user = {};
+      }
+    });
   }
 
+  login() {
+  	this.af.auth.login({
+    	provider: AuthProviders.Google
+  	});
+	}
+ 
+	logout() {
+	  this.af.auth.logout();
+	}
+
+	ngOnInit() {
+	  }
 }

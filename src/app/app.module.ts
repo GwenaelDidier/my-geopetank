@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 //import { LayoutModule } from 'ng2-flex-layout';
 
 import { AppComponent } from './app.component';
@@ -33,7 +33,10 @@ export const firebaseConfig = {
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig, {
+      provider: AuthProviders.Google,
+      method: AuthMethods.Popup
+    })
     //LayoutModule
   ],
   providers: [],
