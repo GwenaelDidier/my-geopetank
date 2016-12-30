@@ -1,4 +1,4 @@
-<div class="flex-container" layout="row" layout-align="center center">
+<div class="layout-flex flex-row" >
 	<div flex="20">
 		<h1>Boulodromes</h1>
 		<md-input placeholder="recherche" [(ngModel)]="recherche" name="recherche"></md-input>
@@ -25,7 +25,7 @@
 	 	<div id="contentBoulodrome">
 		 	<h1>{{title}}</h1>
 		 	<form *ngIf="boulodromeIsSelected" (submit)="saveBoulodrome()" >
-		 	
+
 		 		<div layout="row">
 		 			<md-input placeholder="Ville" disabled value="{{ville}}"></md-input>
 		 		</div>
@@ -66,43 +66,10 @@
 		 	</form>
 		 </div>
 	 </div>
+
+  <sebm-google-map *ngIf="showMap" [latitude]="lat" [longitude]="lng" #myMap>
+    <sebm-google-map-marker *ngFor="let m of markers" [latitude]="m.latitude" [longitude]="m.longitude"></sebm-google-map-marker>
+  </sebm-google-map>
+
 </div>
 
-
-
-
-
-
-
-<!-- <md-sidenav-layout>
-    <md-sidenav mode="side" opened="true">
-            <md-list>
-                <md-list-item *ngFor="let boulodrome of boulodromes | async">
-                    <div class="itemBoulodrome">
-                        <div class="itemBoulodromeDescription">
-                            <h4 md-line>{{boulodrome.nom}} - {{boulodrome.secteur}}</h4>
-                            <p md-line>
-                                <md-icon>map</md-icon>
-                                <span>{{boulodrome.latitude}} / {{boulodrome.longitude}}</span>
-                            </p>
-                        </div>
-                        <div class="itemBoulodromeDescription">
-                            <button md-icon-button (click)="modifBoulodrome(boulodrome)">
-                                <md-icon>info</md-icon>
-                            </button>
-                        </div>
-                    </div>
-                </md-list-item>
-            </md-list>
-    </md-sidenav>
-    <div class="my-content">
-        <h1>Boulodromes</h1>
-        <md-grid-list cols="4" [style.background]="'lightblue'">
-		   <md-grid-tile>One</md-grid-tile>
-		   <md-grid-tile>Two</md-grid-tile>
-		   <md-grid-tile>Three</md-grid-tile>
-		   <md-grid-tile>Four</md-grid-tile>
-		</md-grid-list>
-    </div>
-</md-sidenav-layout>
- -->

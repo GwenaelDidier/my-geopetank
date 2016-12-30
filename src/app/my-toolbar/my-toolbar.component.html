@@ -1,13 +1,45 @@
-<md-toolbar color="primary">
+<md-toolbar color="primary" md-scroll-shrink>
 	<span>My Geopetank</span>
+
+  <button md-button routerLink="/chat" routerLinkActive="active">
+    Chat
+  </button>
+
+  <button md-button routerLink="/carte" routerLinkActive="active">
+    Carte
+  </button>
+
 
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
-	
-	<div>
-		<button md-raised-button color="accent" (click)="login()">
-			Se connecter avec Google
-		</button>
+
+	<div *ngIf="!user.auth">
+    <button md-raised-button color="accent" [md-menu-trigger-for]="menu" #menuTrigger="mdMenuTrigger">
+      Se connecter
+    </button>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item (click)="loginGoogle()">
+        <md-icon>google</md-icon>
+        Se connecter avec Google
+      </button>
+      <button md-menu-item (click)="loginFacebook()">
+        <md-icon>facebook</md-icon>
+        Se connecter avec Facebook
+      </button>
+
+      <button md-menu-item disabled> Sign Out </button>
+    </md-menu>
 	</div>
-  
+
+  <div *ngIf="user.auth">
+    <span>{{user.auth?.displayName}}</span>
+    <img class="icon" [src]="user.auth?.photoUrl">
+  </div>
+
+  <div *ngIf="user.auth">
+    <button md-raised-button color="accent" (click)="logout()">
+      Se déconnecter
+    </button>
+  </div>
+
 </md-toolbar>

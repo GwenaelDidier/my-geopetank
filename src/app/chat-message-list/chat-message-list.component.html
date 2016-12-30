@@ -1,0 +1,7 @@
+<section class="message-list-container">
+  <app-chat-message *ngFor="let m of (messages | async); trackBy: trackByKey" [message]="m"></app-chat-message>
+
+  <div *ngIf="(messages | async)?.length < 1">
+    No messages
+  </div>
+</section>

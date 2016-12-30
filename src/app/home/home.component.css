@@ -1,0 +1,53 @@
+.hero{
+  box-sizing: border-box;
+  box-shadow: none;
+  padding: 48px 48px 32px 48px;
+  position: relative;
+  height: 168px;
+}
+
+.hero.is-large {
+  height: 560px;
+  padding-top: 32px;
+  text-align: center;
+}
+
+.hero.is-large h1{
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 64px;
+  margin-bottom: 64px;
+  color: #fff;
+}
+
+.background-superhero-paper {
+  background: url(./assets/header_logo.png) no-repeat bottom center,-webkit-linear-gradient(305deg,#0D47A1,#42A5F5);
+  background: url(./assets/header_logo.png) no-repeat bottom center,linear-gradient(145deg,#0D47A1,#42A5F5);
+  background-blend-mode: multiply;
+  background-size: 100%;
+}
+
+article.intro{
+  padding: 64px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro-rows{
+  margin-top: 64px;
+}
+
+.intro-row{
+  max-width: 920px;
+  margin: 0 0 60px 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro-row > .intro-text{
+  max-width: 50%;
+}
+
+.intro-row > .intro-img{
+  max-width: 50%;
+}
