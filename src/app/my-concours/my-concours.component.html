@@ -1,76 +1,118 @@
 <div id="myConcours">
   <div id="param-concours">
     <h2>Recherche de concours</h2>
-    <div>
-      <md-slide-toggle name="secteurToulouse" [(ngModel)]="toggleSecteurToulouse" (change)="prepareFilter($event)">
-        Toulouse
-      </md-slide-toggle>
+    <div class="row-param-concours">
+      <div class="flex">
+        <md-card>
+          <h3>Secteurs</h3>
+          <md-slide-toggle name="secteurToulouse" [(ngModel)]="toggleSecteurToulouse" (change)="prepareFilter($event)">
+            Toulouse
+          </md-slide-toggle>
 
-      <md-slide-toggle name="secteurGls" [(ngModel)]="toggleSecteurGls" (change)="prepareFilter($event)">
-        GLS
-      </md-slide-toggle>
+          <md-slide-toggle name="secteurGls" [(ngModel)]="toggleSecteurGls" (change)="prepareFilter($event)">
+            GLS
+          </md-slide-toggle>
 
-      <md-slide-toggle name="secteurCarbonne" [(ngModel)]="toggleSecteurCarbonne" (change)="prepareFilter($event)">
-        Carbonne
-      </md-slide-toggle>
+          <md-slide-toggle name="secteurCarbonne" [(ngModel)]="toggleSecteurCarbonne" (change)="prepareFilter($event)">
+            Carbonne
+          </md-slide-toggle>
 
-      <md-slide-toggle name="secteurPibrac" [(ngModel)]="toggleSecteurPibrac" (change)="prepareFilter($event)">
-        Pibrac
-      </md-slide-toggle>
+          <md-slide-toggle name="secteurPibrac" [(ngModel)]="toggleSecteurPibrac" (change)="prepareFilter($event)">
+            Pibrac
+          </md-slide-toggle>
 
-      <md-slide-toggle name="secteurGrenade" [(ngModel)]="toggleSecteurGrenade" (change)="prepareFilter($event)">
-        Grenade
-      </md-slide-toggle>
+          <md-slide-toggle name="secteurGrenade" [(ngModel)]="toggleSecteurGrenade" (change)="prepareFilter($event)">
+            Grenade
+          </md-slide-toggle>
 
-      <md-slide-toggle name="secteurMuret" [(ngModel)]="toggleSecteurMuret" (change)="prepareFilter($event)">
-        Muret
-      </md-slide-toggle>
+          <md-slide-toggle name="secteurMuret" [(ngModel)]="toggleSecteurMuret" (change)="prepareFilter($event)">
+            Muret
+          </md-slide-toggle>
 
-      <md-slide-toggle name="secteurVallees" [(ngModel)]="toggleSecteurVallees" (change)="prepareFilter($event)">
-        4 Vallees
-      </md-slide-toggle>
+          <md-slide-toggle name="secteurVallees" [(ngModel)]="toggleSecteurVallees" (change)="prepareFilter($event)">
+            4 Vallees
+          </md-slide-toggle>
+        </md-card>
+      </div>
+      <div class="flex">
+        <md-card>
+          <h3>filtres</h3>
+          <md-slide-toggle name="formationDoublette" [(ngModel)]="toggleFormationDoublette" (change)="prepareFilter($event)">
+            Doublette
+          </md-slide-toggle>
+          <md-slide-toggle name="formationDoubletteMixte" [(ngModel)]="toggleFormationDoubletteMixte" (change)="prepareFilter($event)">
+            Doublette Mixte
+          </md-slide-toggle>
+          <md-slide-toggle name="formationDoubletteFeminin" [(ngModel)]="toggleFormationDoubletteFeminin" (change)="prepareFilter($event)">
+            Doublette Feminin
+          </md-slide-toggle>
+          <md-slide-toggle name="formationTriplette" [(ngModel)]="toggleFormationTriplette" (change)="prepareFilter($event)">
+            Triplette
+          </md-slide-toggle>
+          <md-slide-toggle name="formationTripletteMixte" [(ngModel)]="toggleFormationTripletteMixte" (change)="prepareFilter($event)">
+            Triplette Mixte
+          </md-slide-toggle>
+          <md-slide-toggle name="formationTeteATete" [(ngModel)]="toggleFormationTeteATete" (change)="prepareFilter($event)">
+            Tete a tete
+          </md-slide-toggle>
+          <md-slide-toggle name="formationTeteATeteFeminin" [(ngModel)]="toggleFormationTeteATeteFeminin" (change)="prepareFilter($event)">
+            Tete a tete feminin
+          </md-slide-toggle>
+        </md-card>
+      </div>
     </div>
+    
   </div>
 
-  <div *ngIf="statusConcours == 'active'" id="list-concours">
+  <div [ngSwitch]='statusConcours' id="list-concours">
     <h2>Liste des concours</h2>
-    <div class="card-concours" *ngFor="let concours of  myConcours | myConcoursListDisplayed" >
-      <div class="card-title-concours">
-        <h3>{{concours.club}}</h3>
-      </div>
-      <div class="card-content-concours">
-
-        <div class="concours-infos">
-          <div class="concours-infos-primaires">
-            <div class="concours-secteur">
-              <span>{{getSecteurConcours(concours.secteur)}}</span>
-            </div>
-
-            <div class="concours-date">
-              <md-icon>today</md-icon>
-              <span>{{concours.date | date:'EEEE d MMMM'}}</span>
-            </div>
-            <div class="concours-formation">
-              <span>{{getFormation(concours.formation)}}</span>
-            </div>
-          </div>
-          <div class="concours-infos-secondaires">
-            <div class="concours-gain" *ngIf="concours.gain !== ''">
-              <md-icon>euro_symbol</md-icon>
-              <span>({{concours.gain}})</span>
-            </div>
-            <div class="concours-type">
-              {{getTypeConcours(concours.typeConcours)}}
-            </div>
-
-            <div class="concours-commentaires" *ngIf="concours.commentaires !== ''">
-              ({{concours.commentaires}})
-            </div>
-          </div>
+    <div *ngSwitchCase="'loading'" class="layout-flex flex-center">
+      <md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>
+    </div>
+    <div *ngSwitchCase="'active'">
+      <div class="card-concours" *ngFor="let concours of  myConcours | myConcoursListDisplayed" >
+        <div class="card-title-concours">
+          <h3>{{concours.club}}</h3>
         </div>
+        <div class="card-content-concours">
 
+          <div class="concours-infos">
+            <div class="concours-infos-primaires">
+              <div class="concours-secteur">
+                <span>{{getSecteurConcours(concours.secteur)}}</span>
+              </div>
+
+              <div class="concours-date">
+                <md-icon>today</md-icon>
+                <span>{{concours.date | date:'EEEE d MMMM'}}</span>
+              </div>
+              <div class="concours-formation">
+                <span>{{getFormation(concours.formation)}}</span>
+              </div>
+            </div>
+            <div class="concours-infos-secondaires">
+              <div class="concours-gain" *ngIf="concours.gain !== ''">
+                <md-icon>euro_symbol</md-icon>
+                <span>({{concours.gain}})</span>
+              </div>
+              <div class="concours-type">
+                {{getTypeConcours(concours.typeConcours)}}
+              </div>
+
+              <div class="concours-commentaires" *ngIf="concours.commentaires !== ''">
+                ({{concours.commentaires}})
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
+  </div>
+  <div id="carte-concours">
+    <sebm-google-map *ngIf="showMap && statusConcours === 'active' " [latitude]="lat" [longitude]="lng" #myMap>
+      <sebm-google-map-marker [latitude]="markerInfoLatitude" [longitude]="markerInfoLongitude" *ngIf="modeInfoEnabled"></sebm-google-map-marker>
+    </sebm-google-map>
   </div>
 </div>
 

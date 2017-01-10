@@ -1,7 +1,6 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-my-concours',
@@ -11,6 +10,9 @@ import {Subject} from 'rxjs/Subject';
 export class MyConcoursComponent implements OnInit, AfterViewInit {
 
   public showMap:boolean = false;
+  public lat: number = 43.3;
+  public lng: number = 1.4;
+
   public statusConcours: string;
   public myConcoursFirebase: FirebaseListObservable<any[]>;
   public myConcours:Array<any>;
@@ -22,6 +24,15 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
   public toggleSecteurCarbonne:Boolean = true;
   public toggleSecteurMuret:Boolean = true;
   public toggleSecteurVallees:Boolean = true;
+  public toggleFormationDoublette:Boolean = true;
+  public toggleFormationDoubletteMixte:Boolean = true;
+  public toggleFormationDoubletteFeminin:Boolean = true;
+  public toggleFormationTriplette:Boolean = true;
+  public toggleFormationTripletteMixte:Boolean = true;
+  public toggleFormationTeteATete:Boolean = true;
+  public toggleFormationTeteATeteFeminin:Boolean = true;
+
+  @ViewChild('myMap') myMap: any;
 
   private doFormatDate(elem){
     // set display to true

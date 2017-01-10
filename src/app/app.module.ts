@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { CeiboShare } from 'ng2-social-share';
 import { LOCALE_ID } from '@angular/core';
-import 'hammerjs';
+//import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { MyToolbarComponent } from './my-toolbar/my-toolbar.component';

@@ -11,6 +11,21 @@
     flex-direction: column;
     order: 1;
     width: 400px;
+
+    h3{
+      color: #546E7A;
+    }
+
+    .row-param-concours{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: row;
+
+      div.flex{
+        margin-right: 0.5em;
+      }
+    }
   }
   #list-concours{
     display: flex;
@@ -122,6 +137,22 @@
       }
     }
   }
+
+  #carte-concours{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    order: 3;
+    width: 30%;
+    margin-left: 1%;
+  }
+}
+
+.sebm-google-map-container {
+  margin-top: 48px;
+  height: 400px;
+  width: 100%;
 }
 
 
