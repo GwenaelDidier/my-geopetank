@@ -8,17 +8,22 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { CeiboShare } from 'ng2-social-share';
+import { LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MyToolbarComponent } from './my-toolbar/my-toolbar.component';
 import { MyBoulodromesComponent } from './my-boulodromes/my-boulodromes.component';
-import { MyListFilterPipe } from './my-list-filter.pipe';
+import { MyListFilterPipe } from './pipes/my-list-filter.pipe';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { ChatMessageListComponent } from './chat-message-list/chat-message-list.component';
 import { ChatComponent } from './chat/chat.component';
 import { MyChatServiceService } from './services';
 import { HomeComponent } from './home/home.component';
 import { ChatMessageFormComponent } from './chat-message-form/chat-message-form.component';
+import { GoogleMapDirective } from './directives/googlemap-directive.directive';
+import { MyConcoursComponent } from './my-concours/my-concours.component';
+import { MyConcoursListDisplayedPipe } from './pipes/my-concours-list-displayed.pipe';
 //import { MyAccueilComponent } from './my-accueil/my-accueil.component';
 
 // Must export the config
@@ -33,7 +38,8 @@ export const firebaseConfig = {
 const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: '', component: HomeComponent },
-  { path: 'carte', component: MyBoulodromesComponent }
+  { path: 'carte', component: MyBoulodromesComponent },
+  { path: 'concours', component: MyConcoursComponent }
 ];
 
 @NgModule({
@@ -47,6 +53,10 @@ const appRoutes: Routes = [
     ChatComponent,
     HomeComponent,
     ChatMessageFormComponent,
+    GoogleMapDirective,
+    CeiboShare,
+    MyConcoursComponent,
+    MyConcoursListDisplayedPipe
     //MyAccueilComponent
   ],
   imports: [
@@ -67,10 +77,12 @@ const appRoutes: Routes = [
     CommonModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA22A2SAxyw75jLPtK2Qd6__g3ctkU14Bk'
-    })
+    }),
+    //CeiboShare
+
 
   ],
-  providers: [MyChatServiceService],
+  providers: [MyChatServiceService, {provide: LOCALE_ID, useValue: "fr-FR"}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

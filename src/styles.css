@@ -26,3 +26,26 @@ body{
   align-items: center;
 }
 
+.flex-20{
+  width: 20%;
+}
+
+.flex-80{
+  width: 80%;
+}
+
+.flex-33{
+  width: 33%;
+}
+
+.big-8x{
+  font-size: 8em;
+}
+
+.big-12x{
+  font-size: 12em;
+}
+.md-display-2{
+  font-size: 32px;
+  font-weight: 600;
+}

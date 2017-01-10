@@ -4,35 +4,130 @@
   </div>
 </header>
 
-
 <article class="layout intro layout-column">
-  <div class="intro-rows">
-    <div layout="row" layout-xs="column" class="layout-xs-column layout-row intro-row">
-      <div class="flex intro-text">
-        <h3 class="text-headline"> Comment chercher un boulodrome ?</h3>
-        <div class="text-body">
-          En se déplaçant sur la carte directement, puis clic sur le marqueur dans la carte, on a
-          <ul>
-            <li>Le secteur et la ville.</li>
-            <li>L'adresse du terrain.</li>
-            <li>terrain couvert ou pas.</li>
-          </ul>
-          En tapant le nom de la ville ou du club cherché dans la zone de recherche, on a
-          <ul>
-            <li>Le secteur, ville, adresse et couvert.</li>
-            <li>La liste de tout les concours organisés par le club.</li>
-          </ul>
+  <div class="intro-rows" id="explications">
+    <!--  -->
+    <div class="intro-row layout-flex flex-center">
+      <div class="layout-xs-column layout-column intro-elem">
+
+        <div class="flex flex-center intro-img">
+          <md-icon class="big-12x">people</md-icon>
+          <!--<img src="../assets/carte_boulodrome_presentation.png"/>-->
+        </div>
+        <div class="flex intro-text">
+          <h3 class="text-headline">Se connecter simplement et chatter en direct</h3>
+          <div class="text-body">
+
+          </div>
         </div>
       </div>
-      <div class="flex intro-img">
-        <img src="../assets/carte_boulodrome_presentation.png"/>
+
+      <div class="layout-xs-column layout-column intro-elem">
+        <div class="flex flex-center intro-img">
+          <md-icon class="big-12x">location_searching</md-icon>
+        </div>
+        <div class="flex intro-text">
+          <h3 class="text-headline"> Localiser et mettre à jour les boulodromes</h3>
+          <div class="text-body">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- explications 2eme ligne -->
+    <div class="intro-row layout-flex flex-center">
+      <div class="layout-xs-column layout-column intro-elem">
+
+        <div class="flex intro-img">
+          <md-icon class="big-12x">search</md-icon>
+          <!--<img src="../assets/carte_boulodrome_presentation.png"/>-->
+        </div>
+        <div class="flex intro-text">
+          <h3 class="text-headline">Rechercher et visualiser les concours officiels</h3>
+          <div class="text-body">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="layout-xs-column layout-column intro-elem">
+        <div class="flex intro-img">
+          <md-icon class="big-12x">share</md-icon>
+        </div>
+        <div class="flex intro-text">
+          <h3 class="text-headline">Partager sur les réseaux sociaux</h3>
+          <div class="text-body">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- calendrier PDF -->
+  <div class="intro-rows" id="calendrier">
+    <div  class="intro-row layout-flex flex-center">
+      <div class="layout-xs-column layout-column flex-center">
+        <h2 class="md-display-2">Calendrier Haute-Garonne 2017</h2>
+        <embed src="../../assets/calendrierHg17.pdf" width="600" height="600" alt="pdf"/>
       </div>
     </div>
   </div>
 
-  <div class="intro-rows">
-    <div layout="row" layout-xs="column" class="layout-xs-column layout-row intro-row">
-
-    </div>
-  </div>
 </article>
+
+<div class="main-footer">
+  <nav class="nav-footer">
+    <div class="flex">
+      <div class="elem-footer">
+        <figure>
+          <img src="../assets/petanque_logo.png" />
+        </figure>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="elem-footer">
+        <h3 class="elem-footer-headline">Plan du site</h3>
+        <div class="elem-footer-text-column">
+          <span class="elem-footer-link" routerLink="/carte" routerLinkActive="active">Carte des boulodromes</span>
+          <span class="elem-footer-link" routerLink="/concours" routerLinkActive="active">Recherche de concours</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="elem-footer">
+        <h3 class="elem-footer-headline">Réseaux sociaux</h3>
+        <div class="elem-footer-text">
+          <button md-fab ceiboShare [facebook]="{u: repoUrl}" class="btn-social">
+            <img src="../../assets/svg/custom-facebook.svg" />
+          </button>
+          <button md-fab ceiboShare [googlePlus]="{url:repoUrl}" class="btn-social">
+            <img src="../../assets/svg/custom-google-plus.svg" />
+          </button>
+          <button md-fab ceiboShare [twitter]="{url:repoUrl, text:'Site web Geopetank', hashtags:'geopetank'}" class="btn-social">
+            <img src="../../assets/svg/custom-twitter.svg" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="elem-footer">
+        <h3 class="elem-footer-headline">Contact</h3>
+        <div class="elem-footer-text">
+          <button md-fab class="btn-fab-footer">
+            <md-icon class="big-2x">email</md-icon>
+          </button>
+          <p>mygeopetank@gmail.com</p>
+        </div>
+
+      </div>
+    </div>
+
+
+  </nav>
+</div>
+<footer>
+  <small>&copy; 2017 MyGeopetank</small>
+</footer>

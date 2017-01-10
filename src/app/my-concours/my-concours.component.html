@@ -1,0 +1,58 @@
+<div id="myConcours">
+  <div id="param-concours">
+    <h2>Recherche de concours</h2>
+    <div>
+      <md-slide-toggle name="secteurToulouse" [(ngModel)]="toggleSecteurToulouse" (change)="prepareFilter($event)">
+        Toulouse
+      </md-slide-toggle>
+
+      <ul>
+        <li *ngFor="let concours of myConcoursFirebase | async">
+          {{concours.club}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="statusConcours == 'active'" id="list-concours">
+    <h2>Liste des concours</h2>
+    <div class="card-concours" *ngFor="let concours of  myConcours | myConcoursListDisplayed" >
+      <div class="card-title-concours">
+        <h3>{{concours.club}}</h3>
+      </div>
+      <div class="card-content-concours">
+
+        <div class="concours-infos">
+          <div class="concours-infos-primaires">
+            <div class="concours-secteur">
+              <span>{{getSecteurConcours(concours.secteur)}}</span>
+            </div>
+
+            <div class="concours-date">
+              <md-icon>today</md-icon>
+              <span>{{concours.date | date:'EEEE d MMMM'}}</span>
+            </div>
+            <div class="concours-formation">
+              <span>{{getFormation(concours.formation)}}</span>
+            </div>
+          </div>
+          <div class="concours-infos-secondaires">
+            <div class="concours-gain" *ngIf="concours.gain !== ''">
+              <md-icon>euro_symbol</md-icon>
+              <span>({{concours.gain}})</span>
+            </div>
+            <div class="concours-type">
+              {{getTypeConcours(concours.typeConcours)}}
+            </div>
+
+            <div class="concours-commentaires" *ngIf="concours.commentaires !== ''">
+              ({{concours.commentaires}})
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
