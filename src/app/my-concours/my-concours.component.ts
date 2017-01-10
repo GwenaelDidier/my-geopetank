@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, ChangeDetectorRef, ChangeDetectionStrategy} from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
@@ -6,8 +6,7 @@ import {Subject} from 'rxjs/Subject';
 @Component({
   selector: 'app-my-concours',
   templateUrl: './my-concours.component.html',
-  styleUrls: ['./my-concours.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./my-concours.component.scss']
 })
 export class MyConcoursComponent implements OnInit, AfterViewInit {
 
@@ -17,6 +16,12 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
   public myConcours:Array<any>;
 
   public toggleSecteurToulouse:Boolean = true;
+  public toggleSecteurGls:Boolean = true;
+  public toggleSecteurPibrac:Boolean = true;
+  public toggleSecteurGrenade:Boolean = true;
+  public toggleSecteurCarbonne:Boolean = true;
+  public toggleSecteurMuret:Boolean = true;
+  public toggleSecteurVallees:Boolean = true;
 
   private doFormatDate(elem){
     // set display to true
@@ -172,11 +177,10 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
     for(let i=0; i < this.myConcours.length; i++){
       if( typeof this.myConcours[i][source_] === 'string'){
         if( this.myConcours[i][source_].toLowerCase() === sourceValue_.toLowerCase()){
-          this.myConcours[i].displayIt = this.myConcours[i].displayIt && value_;
+          this.myConcours[i].displayIt = value_;
         }
       }
     }
-    this.ref.detectChanges();
   }
 
   public prepareFilter(event){
@@ -186,15 +190,20 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
 
     let results = regexp.exec(event.source.name);
 
-    mySource = results[1].toLowerCase();
-    mySourceValue = results[2].toLowerCase();
 
+
+    if(event.source.name === 'secteurVallees'){
+      mySource = 'secteur';
+      mySourceValue = '4 vallees';
+    }else{
+      mySource = results[1].toLowerCase();
+      mySourceValue = results[2].toLowerCase();
+    }
     this.getConcoursFiltered(mySource, mySourceValue, event.checked);
   }
 
-  constructor(af: AngularFire, private ref: ChangeDetectorRef) {
+  constructor(af: AngularFire) {
 
-    //ref.detach();
     this.statusConcours = 'loading';
     this.myConcoursFirebase = af.database.list('/concours/officiels');
 
@@ -214,10 +223,6 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.showMap = true;
-  }
-
-  ngOnChanges:function(changes) {
-    console.log(changes);
   }
 
 }

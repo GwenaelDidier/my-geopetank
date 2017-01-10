@@ -6,11 +6,29 @@
         Toulouse
       </md-slide-toggle>
 
-      <ul>
-        <li *ngFor="let concours of myConcoursFirebase | async">
-          {{concours.club}}
-        </li>
-      </ul>
+      <md-slide-toggle name="secteurGls" [(ngModel)]="toggleSecteurGls" (change)="prepareFilter($event)">
+        GLS
+      </md-slide-toggle>
+
+      <md-slide-toggle name="secteurCarbonne" [(ngModel)]="toggleSecteurCarbonne" (change)="prepareFilter($event)">
+        Carbonne
+      </md-slide-toggle>
+
+      <md-slide-toggle name="secteurPibrac" [(ngModel)]="toggleSecteurPibrac" (change)="prepareFilter($event)">
+        Pibrac
+      </md-slide-toggle>
+
+      <md-slide-toggle name="secteurGrenade" [(ngModel)]="toggleSecteurGrenade" (change)="prepareFilter($event)">
+        Grenade
+      </md-slide-toggle>
+
+      <md-slide-toggle name="secteurMuret" [(ngModel)]="toggleSecteurMuret" (change)="prepareFilter($event)">
+        Muret
+      </md-slide-toggle>
+
+      <md-slide-toggle name="secteurVallees" [(ngModel)]="toggleSecteurVallees" (change)="prepareFilter($event)">
+        4 Vallees
+      </md-slide-toggle>
     </div>
   </div>
 

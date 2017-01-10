@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { CeiboShare } from 'ng2-social-share';
 import { LOCALE_ID } from '@angular/core';
+import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { MyToolbarComponent } from './my-toolbar/my-toolbar.component';
@@ -78,6 +79,7 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA22A2SAxyw75jLPtK2Qd6__g3ctkU14Bk'
     }),
+
     //CeiboShare
 
 
