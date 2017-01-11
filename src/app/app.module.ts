@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { CeiboShare } from 'ng2-social-share';
 import { LOCALE_ID } from '@angular/core';
-//import 'hammerjs';
+import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { MyToolbarComponent } from './my-toolbar/my-toolbar.component';
@@ -25,7 +25,6 @@ import { ChatMessageFormComponent } from './chat-message-form/chat-message-form.
 import { GoogleMapDirective } from './directives/googlemap-directive.directive';
 import { MyConcoursComponent } from './my-concours/my-concours.component';
 import { MyConcoursListDisplayedPipe } from './pipes/my-concours-list-displayed.pipe';
-//import { MyAccueilComponent } from './my-accueil/my-accueil.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -58,7 +57,6 @@ const appRoutes: Routes = [
     CeiboShare,
     MyConcoursComponent,
     MyConcoursListDisplayedPipe
-    //MyAccueilComponent
   ],
   imports: [
     BrowserModule,
@@ -79,9 +77,6 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA22A2SAxyw75jLPtK2Qd6__g3ctkU14Bk'
     }),
-
-    //CeiboShare
-
 
   ],
   providers: [MyChatServiceService, {provide: LOCALE_ID, useValue: "fr-FR"}],

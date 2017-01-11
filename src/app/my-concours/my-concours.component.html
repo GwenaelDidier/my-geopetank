@@ -37,31 +37,31 @@
       <div class="flex">
         <md-card>
           <h3>filtres</h3>
-          <md-slide-toggle name="formationDoublette" [(ngModel)]="toggleFormationDoublette" (change)="prepareFilter($event)">
+          <md-slide-toggle name="formationDoublette" [(ngModel)]="toggleFormationDoublette" (change)="prepareFormationFilter($event)">
             Doublette
           </md-slide-toggle>
-          <md-slide-toggle name="formationDoubletteMixte" [(ngModel)]="toggleFormationDoubletteMixte" (change)="prepareFilter($event)">
+          <md-slide-toggle name="formationDoubletteMixte" [(ngModel)]="toggleFormationDoubletteMixte" (change)="prepareFormationFilter($event)">
             Doublette Mixte
           </md-slide-toggle>
-          <md-slide-toggle name="formationDoubletteFeminin" [(ngModel)]="toggleFormationDoubletteFeminin" (change)="prepareFilter($event)">
+          <md-slide-toggle name="formationDoubletteFeminin" [(ngModel)]="toggleFormationDoubletteFeminin" (change)="prepareFormationFilter($event)">
             Doublette Feminin
           </md-slide-toggle>
-          <md-slide-toggle name="formationTriplette" [(ngModel)]="toggleFormationTriplette" (change)="prepareFilter($event)">
+          <md-slide-toggle name="formationTriplette" [(ngModel)]="toggleFormationTriplette" (change)="prepareFormationFilter($event)">
             Triplette
           </md-slide-toggle>
-          <md-slide-toggle name="formationTripletteMixte" [(ngModel)]="toggleFormationTripletteMixte" (change)="prepareFilter($event)">
+          <md-slide-toggle name="formationTripletteMixte" [(ngModel)]="toggleFormationTripletteMixte" (change)="prepareFormationFilter($event)">
             Triplette Mixte
           </md-slide-toggle>
-          <md-slide-toggle name="formationTeteATete" [(ngModel)]="toggleFormationTeteATete" (change)="prepareFilter($event)">
+          <md-slide-toggle name="formationTeteATete" [(ngModel)]="toggleFormationTeteATete" (change)="prepareFormationFilter($event)">
             Tete a tete
           </md-slide-toggle>
-          <md-slide-toggle name="formationTeteATeteFeminin" [(ngModel)]="toggleFormationTeteATeteFeminin" (change)="prepareFilter($event)">
+          <md-slide-toggle name="formationTeteATeteFeminin" [(ngModel)]="toggleFormationTeteATeteFeminin" (change)="prepareFormationFilter($event)">
             Tete a tete feminin
           </md-slide-toggle>
         </md-card>
       </div>
     </div>
-    
+
   </div>
 
   <div [ngSwitch]='statusConcours' id="list-concours">

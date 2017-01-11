@@ -201,8 +201,6 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
 
     let results = regexp.exec(event.source.name);
 
-
-
     if(event.source.name === 'secteurVallees'){
       mySource = 'secteur';
       mySourceValue = '4 vallees';
@@ -210,6 +208,41 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
       mySource = results[1].toLowerCase();
       mySourceValue = results[2].toLowerCase();
     }
+    this.getConcoursFiltered(mySource, mySourceValue, event.checked);
+  }
+
+  public prepareFormationFilter(event){
+
+    let mySource:String = 'formation';
+    let mySourceValue:String;
+
+
+    switch(event.source.name){
+
+      case 'formationDoublette':
+        mySourceValue = 'd';
+        break;
+      case 'formationDoubletteMixte':
+        mySourceValue = 'dm';
+        break;
+
+      case 'formationDoubletteFeminin':
+        mySourceValue = 'df';
+        break;
+      case 'formationTriplette':
+        mySourceValue = 't';
+        break;
+      case 'formationTripletteMixte':
+        mySourceValue = 'tm';
+        break;
+      case 'formationTeteATete':
+        mySourceValue = 'tt';
+        break;
+      case 'formationTeteATeteFeminin':
+        mySourceValue = 'ttf';
+        break;
+    }
+
     this.getConcoursFiltered(mySource, mySourceValue, event.checked);
   }
 
