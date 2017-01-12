@@ -73,6 +73,9 @@
       <div class="card-concours" *ngFor="let concours of  myConcours | myConcoursListDisplayed" >
         <div class="card-title-concours">
           <h3>{{concours.club}}</h3>
+          <button md-raised-button color="primary" class="btn-voir" (click)="voirConcoursMap(concours.club)">
+            <span>Voir</span>
+          </button>
         </div>
         <div class="card-content-concours">
 

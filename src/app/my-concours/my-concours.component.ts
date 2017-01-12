@@ -15,7 +15,9 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
 
   public statusConcours: string;
   public myConcoursFirebase: FirebaseListObservable<any[]>;
+  public myBoulodromesFirebase: FirebaseListObservable<any[]>;
   public myConcours:Array<any>;
+  public myBoulodromes:Array<any>;
 
   public toggleSecteurToulouse:Boolean = true;
   public toggleSecteurGls:Boolean = true;
@@ -246,10 +248,20 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
     this.getConcoursFiltered(mySource, mySourceValue, event.checked);
   }
 
+  public voirConcoursMap(club){
+    console.log(club);
+
+  }
+
   constructor(af: AngularFire) {
 
     this.statusConcours = 'loading';
     this.myConcoursFirebase = af.database.list('/concours/officiels');
+    this.myBoulodromesFirebase = af.database.list('/boulodromes', {
+      query: {
+        orderByChild: 'nom',
+      }
+    });
 
     this.myConcoursFirebase
       //.map(this.doFormatDate)
@@ -260,6 +272,10 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
         this.statusConcours = 'active';
       });
 
+    this.myBoulodromesFirebase
+      .subscribe(boulodromes => {
+         this.myBoulodromes = boulodromes;
+      });  
   }
 
   ngOnInit() {
