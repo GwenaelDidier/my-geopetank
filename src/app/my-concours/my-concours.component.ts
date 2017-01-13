@@ -13,12 +13,19 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
   public lat: number = 43.3;
   public lng: number = 1.4;
 
+  // initialisation du marker
+  public markerInfoLatitude:number;
+  public markerInfoLongitude:number;
+  public modeInfoEnabled:Boolean=false;
+  public lastIndexSelected:number;
+
   public statusConcours: string;
   public myConcoursFirebase: FirebaseListObservable<any[]>;
   public myBoulodromesFirebase: FirebaseListObservable<any[]>;
   public myConcours:Array<any>;
   public myBoulodromes:Array<any>;
 
+  // initialisation des switchs
   public toggleSecteurToulouse:Boolean = true;
   public toggleSecteurGls:Boolean = true;
   public toggleSecteurPibrac:Boolean = true;
@@ -34,16 +41,47 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
   public toggleFormationTeteATete:Boolean = true;
   public toggleFormationTeteATeteFeminin:Boolean = true;
 
+  // initilisation su slider pour le nombre de jours
+  public nbJours:number = 14;
+
   @ViewChild('myMap') myMap: any;
 
+
+  /**
+   * doFormatDate
+   * @param elem
+   * @returns {any}
+   */
   private doFormatDate(elem){
     // set display to true
     elem.displayIt = true;
+    elem.dateDisplayIt = true;
+
     elem.date = Date.parse(elem.date);
     return elem;
   }
 
-  // appele par le template HTML
+  /**
+   * @name filtreDatesConcours
+   * @param nbJours
+   */
+  private filtreDatesConcours(nbJours){
+    let today = new Date();
+    let dateFin = new Date(today.getTime() + nbJours*24*60*60*1000);
+    this.myConcours.map(concours => concours.dateDisplayIt = true);
+    for(let c in this.myConcours){
+      if(this.myConcours[c].date > dateFin.getTime()){
+        this.myConcours[c].dateDisplayIt = false;
+      }
+    }
+  }
+
+  /**
+   * @name getIconFormation
+   * @description appele par le template HTML
+   * @param formation
+   * @returns {string}
+   */
   public getIconFormation(formation){
 
     let urlImage:String;
@@ -248,34 +286,65 @@ export class MyConcoursComponent implements OnInit, AfterViewInit {
     this.getConcoursFiltered(mySource, mySourceValue, event.checked);
   }
 
-  public voirConcoursMap(club){
-    console.log(club);
+  public voirConcoursMap(club, index){
 
+    club = club.replace('-',' ');
+
+    if(this.lastIndexSelected === undefined || this.lastIndexSelected === null){
+      for(let b in this.myBoulodromes){
+        if(this.myBoulodromes[b].nom.toLowerCase() === club.toLowerCase()){
+          this.markerInfoLatitude = parseFloat(this.myBoulodromes[b].latitude);
+          this.markerInfoLongitude = parseFloat(this.myBoulodromes[b].longitude);
+          this.modeInfoEnabled = true;
+          this.lastIndexSelected = index;
+          break;
+        }
+      }
+    }else{
+      if(this.lastIndexSelected === index){
+        this.markerInfoLatitude = null;
+        this.markerInfoLongitude = null;
+        this.modeInfoEnabled = false;
+        this.lastIndexSelected = null;
+      }else{
+        this.lastIndexSelected = null;
+        this.voirConcoursMap(club, index);
+      }
+    }
+  }
+
+
+
+
+  public onChangeNbJours(){
+    this.filtreDatesConcours(this.nbJours);
   }
 
   constructor(af: AngularFire) {
 
     this.statusConcours = 'loading';
     this.myConcoursFirebase = af.database.list('/concours/officiels');
+
+
+    this.myConcoursFirebase
+      //.map(this.doFormatDate)
+      .subscribe(concours => {
+        concours.map(this.doFormatDate);
+        this.myConcours = concours;
+        this.filtreDatesConcours(this.nbJours);
+        this.statusConcours = 'active';
+      });
+
     this.myBoulodromesFirebase = af.database.list('/boulodromes', {
       query: {
         orderByChild: 'nom',
       }
     });
 
-    this.myConcoursFirebase
-      //.map(this.doFormatDate)
-      .subscribe(concours => {
-        concours.map(this.doFormatDate);
-        //console.log(concours);
-        this.myConcours = concours;
-        this.statusConcours = 'active';
-      });
-
     this.myBoulodromesFirebase
       .subscribe(boulodromes => {
          this.myBoulodromes = boulodromes;
-      });  
+      });
   }
 
   ngOnInit() {

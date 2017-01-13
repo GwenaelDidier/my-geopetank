@@ -47,7 +47,7 @@ export class GoogleMapDirective {
   initializeMap(){
     var me = this;
     me.googleMarkers = me.initMarkers();
-    if(me.googleMarkers.length > 0){
+    if(me._map !== undefined && me.googleMarkers.length > 0){
       if(me.markersClusterer !== undefined && me.markersClusterer !== null){
         me.markersClusterer.clearMarkers();
       }

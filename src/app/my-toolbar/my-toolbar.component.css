@@ -1,3 +1,15 @@
 .fill-remaining-space {
   flex: 1 1 auto;
 }
+
+.btn-icon-connexion{
+  font-size: 14px;
+}
+.btn-icon-connexion > img{
+  height: 24px;
+  width: 24px;
+  padding-right: 12px;
+}
+#div-deconnecter{
+  padding-left: 24px;
+}

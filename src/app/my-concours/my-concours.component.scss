@@ -21,9 +21,18 @@
       justify-content: flex-start;
       align-items: flex-start;
       flex-direction: row;
-
+      margin-bottom: 24px;
       div.flex{
         margin-right: 0.5em;
+      }
+    }
+    #param-concours-slider{
+      width: 94%;
+      h3{
+        margin-bottom: 0.25em;
+      }
+      md-slider{
+        width: 100%;
       }
     }
   }
@@ -137,6 +146,10 @@
           }
         }
 
+      }
+
+      &.card-concours-onmap{
+        background-color: rgba(64, 120, 192, 0.1);
       }
     }
   }

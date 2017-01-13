@@ -29,6 +29,8 @@ export class MyBoulodromesComponent implements OnInit, AfterViewInit {
   public lng: number = 1.4;
 
   public showMap:boolean = false;
+  // google maps zoom level
+  public zoom: number = 8;
 
   public seeBoulodromeModeSolo: boolean = false;
   public recherche: string;

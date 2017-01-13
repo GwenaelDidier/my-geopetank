@@ -22,25 +22,24 @@
       Se connecter
     </button>
     <md-menu #menu="mdMenu">
-      <button md-menu-item (click)="loginGoogle()">
-        <md-icon>google</md-icon>
+      <button class="btn-icon-connexion" md-menu-item (click)="loginGoogle()">
+        <img  src="../../assets/svg/custom-google-plus.svg" />
         Se connecter avec Google
       </button>
-      <button md-menu-item (click)="loginFacebook()">
-        <md-icon>facebook</md-icon>
+      <button class="btn-icon-connexion" md-menu-item (click)="loginFacebook()">
+        <img src="../../assets/svg/custom-facebook.svg" />
         Se connecter avec Facebook
       </button>
 
-      <button md-menu-item disabled> Sign Out </button>
     </md-menu>
 	</div>
 
   <div *ngIf="user.auth">
     <span>{{user.auth?.displayName}}</span>
-    <img class="icon" [src]="user.auth?.photoUrl">
+    <!--<img class="icon" [src]="user.auth?.photoUrl">-->
   </div>
 
-  <div *ngIf="user.auth">
+  <div *ngIf="user.auth" id="div-deconnecter">
     <button md-raised-button color="accent" (click)="logout()">
       Se déconnecter
     </button>

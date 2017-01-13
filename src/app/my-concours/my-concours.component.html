@@ -1,6 +1,15 @@
 <div id="myConcours">
   <div id="param-concours">
     <h2>Recherche de concours</h2>
+    <div class="row-param-concours" id="param-concours-slider">
+      <div class="flex">
+        <md-card>
+          <h3>Nombre de jours ({{nbJours}})</h3>
+          <md-slider thumbLabel min="0" max="60" step="1" [(ngModel)]="nbJours" (change)="onChangeNbJours()"></md-slider>
+        </md-card>
+      </div>
+    </div>
+
     <div class="row-param-concours">
       <div class="flex">
         <md-card>
@@ -70,11 +79,12 @@
       <md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>
     </div>
     <div *ngSwitchCase="'active'">
-      <div class="card-concours" *ngFor="let concours of  myConcours | myConcoursListDisplayed" >
+      <div class="card-concours" [ngClass]="{'card-concours-onmap': lastIndexSelected === i}" *ngFor="let concours of  myConcours | myConcoursListDisplayed; let i = index" >
         <div class="card-title-concours">
           <h3>{{concours.club}}</h3>
-          <button md-raised-button color="primary" class="btn-voir" (click)="voirConcoursMap(concours.club)">
-            <span>Voir</span>
+          <button md-raised-button color="primary" class="btn-voir" (click)="voirConcoursMap(concours.club, i)">
+            <span *ngIf="lastIndexSelected !== i">Voir</span>
+            <span *ngIf="lastIndexSelected === i">Ne plus voir</span>
           </button>
         </div>
         <div class="card-content-concours">

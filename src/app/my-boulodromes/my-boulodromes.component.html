@@ -25,6 +25,7 @@
               </div>
             </div>
           </md-list-item>
+
         </md-list>
       </div>
     </div>
@@ -80,7 +81,7 @@
       </div>
     </div>
 
-    <sebm-google-map *ngIf="showMap" [latitude]="lat" [longitude]="lng" #myMap>
+    <sebm-google-map *ngIf="showMap" [latitude]="lat" [longitude]="lng" [zoom]="zoom" #myMap>
       <!--<sebm-google-map-marker [latitude]="markerInfoLatitude" [longitude]="markerInfoLongitude" *ngIf="modeInfoEnabled"></sebm-google-map-marker>-->
       <googlemap-directive [markers] = "markers | myListFilter:recherche"></googlemap-directive>
     </sebm-google-map>
