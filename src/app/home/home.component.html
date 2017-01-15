@@ -7,7 +7,7 @@
 <article class="layout intro layout-column">
   <div class="intro-rows" id="explications">
     <!--  -->
-    <div class="intro-row layout-flex flex-center">
+    <div class="intro-row layout-flex flex-center layout-xs-column layout-sm-column">
       <div class="layout-xs-column layout-column intro-elem">
 
         <div class="flex flex-center intro-img">
@@ -36,7 +36,7 @@
     </div>
 
     <!-- explications 2eme ligne -->
-    <div class="intro-row layout-flex flex-center">
+    <div class="intro-row layout-flex flex-center layout-xs-column layout-sm-column">
       <div class="layout-xs-column layout-column intro-elem">
 
         <div class="flex intro-img">
@@ -79,8 +79,8 @@
 </article>
 
 <div class="main-footer">
-  <nav class="nav-footer">
-    <div class="flex">
+  <nav class="nav-footer layout-xs-column layout-sm-column">
+    <div class="flex" *hideItBootstrap="['xs', 'sm', 'md']">
       <div class="elem-footer">
         <figure>
           <img src="../assets/petanque_logo.png" />

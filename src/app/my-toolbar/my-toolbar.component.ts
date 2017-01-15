@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { MdIcon, MdIconRegistry } from '@angular/material/icon';
+//import { ResponsiveModule } from 'ng2-responsive';
 
 @Component({
   selector: 'app-my-toolbar',
@@ -17,7 +18,6 @@ export class MyToolbarComponent implements OnInit {
   constructor(
     public af: AngularFire,
     public localStorageService: LocalStorageService
-
   ) {
     this.af.auth.subscribe(user => {
       if(user) {

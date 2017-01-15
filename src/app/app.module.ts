@@ -10,21 +10,30 @@ import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { CeiboShare } from 'ng2-social-share';
 import { LOCALE_ID } from '@angular/core';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { ResponsiveModule } from 'ng2-responsive';
 import 'hammerjs';
 
+// Components
 import { AppComponent } from './app.component';
 import { MyToolbarComponent } from './my-toolbar/my-toolbar.component';
 import { MyBoulodromesComponent } from './my-boulodromes/my-boulodromes.component';
-import { MyListFilterPipe } from './pipes/my-list-filter.pipe';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { ChatMessageListComponent } from './chat-message-list/chat-message-list.component';
 import { ChatComponent } from './chat/chat.component';
-import { MyChatServiceService } from './services';
 import { HomeComponent } from './home/home.component';
 import { ChatMessageFormComponent } from './chat-message-form/chat-message-form.component';
-import { GoogleMapDirective } from './directives/googlemap-directive.directive';
 import { MyConcoursComponent } from './my-concours/my-concours.component';
+
+// Services
+import { MyChatServiceService } from './services';
+
+// Pipes
+import { MyListFilterPipe } from './pipes/my-list-filter.pipe';
 import { MyConcoursListDisplayedPipe } from './pipes/my-concours-list-displayed.pipe';
+
+// Directives
+import { GoogleMapDirective } from './directives/googlemap-directive.directive';
 
 // Must export the config
 export const firebaseConfig = {
@@ -77,6 +86,8 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA22A2SAxyw75jLPtK2Qd6__g3ctkU14Bk'
     }),
+    FlexLayoutModule.forRoot(),
+    ResponsiveModule
 
   ],
   providers: [MyChatServiceService, {provide: LOCALE_ID, useValue: "fr-FR"}],

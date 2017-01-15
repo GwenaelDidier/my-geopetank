@@ -13,3 +13,13 @@
 #div-deconnecter{
   padding-left: 24px;
 }
+
+md-toolbar ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+md-toolbar ul li{
+  float: left;
+}

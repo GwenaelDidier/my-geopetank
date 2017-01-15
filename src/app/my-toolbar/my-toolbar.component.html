@@ -1,18 +1,41 @@
 <md-toolbar color="primary" md-scroll-shrink>
+  <button md-button [md-menu-trigger-for]="menuPetitEcran" #menuTrigger="mdMenuTrigger" *showItBootstrap="['xs', 'sm', 'md']">
+    <md-icon>menu</md-icon>
+  </button>
+
+  <md-menu #menuPetitEcran="mdMenu">
+    <button md-menu-item routerLink="/" routerLinkActive="active">
+      Accueil
+    </button>
+    <button md-menu-item routerLink="/concours" routerLinkActive="active">
+      Concours
+    </button>
+    <button md-menu-item routerLink="/carte" routerLinkActive="active">
+      Carte
+    </button>
+    <button md-menu-item routerLink="/chat" routerLinkActive="active">
+      Chat
+    </button>
+  </md-menu>
+
 	<span routerLink="/">My Geopetank</span>
-
-  <button md-button routerLink="/chat" routerLinkActive="active">
-    Chat
-  </button>
-
-  <button md-button routerLink="/carte" routerLinkActive="active">
-    Carte
-  </button>
-
-  <button md-button routerLink="/concours" routerLinkActive="active">
-    Concours
-  </button>
-
+  <ul *hideItBootstrap="['xs', 'sm', 'md']">
+    <li>
+      <button md-button routerLink="/chat" routerLinkActive="active">
+        Chat
+      </button>
+    </li>
+    <li>
+      <button md-button routerLink="/carte" routerLinkActive="active">
+        Carte
+      </button>
+    </li>
+    <li>
+      <button md-button routerLink="/concours" routerLinkActive="active">
+        Concours
+      </button>
+    </li>
+  </ul>
 
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>

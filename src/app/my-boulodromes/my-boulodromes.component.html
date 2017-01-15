@@ -1,5 +1,9 @@
-<div class="layout-flex flex-row" >
-  <div flex="20" class="flex-20">
+<div class="flex-container"
+     fxLayout="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="center flex-start"
+     fxLayoutAlign.xs="start">
+  <div fxFlex="30%" fxFlex.xs="40%" fxFlex.sm="40%" fxFlex.md="40%" class="flex-item">
     <h1>Boulodromes</h1>
     <md-input placeholder="recherche" [(ngModel)]="recherche" name="recherche"></md-input>
 
@@ -31,7 +35,7 @@
     </div>
 
   </div>
-  <div flex="80" class="flex-80 layout-flex flex-row">
+  <div fxFlex="70%" fxFlex.xs="60%" fxFlex.sm="60%" fxFlex.md="60%" class="flex-item">
     <div id="contentBoulodrome" *ngIf="boulodromeIsSelected">
       <h1>{{title}}</h1>
       <div *ngIf="boulodromeIsSelected">

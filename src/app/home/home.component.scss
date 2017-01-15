@@ -24,7 +24,7 @@
   background: url(./assets/header_logo.png) no-repeat bottom center,-webkit-linear-gradient(305deg,#0D47A1,#42A5F5);
   background: url(./assets/header_logo.png) no-repeat bottom center,linear-gradient(145deg,#0D47A1,#42A5F5);
   background-blend-mode: multiply;
-  background-size: 100%;
+  background-size: cover;
 }
 
 article.intro{
@@ -93,6 +93,10 @@ article#contact{
     flex-direction: row;
 
     .elem-footer{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
       .elem-footer-headline{
         font-size: 24px;
         font-weight: 400;
@@ -103,6 +107,7 @@ article#contact{
 
         .btn-fab-footer{
           background: #3D3D3D;
+
         }
         p{
           margin-left: 12px;
@@ -129,7 +134,9 @@ article#contact{
         border: 0;
         outline: 0;
         box-shadow: none;
-        margin: 12px;
+        margin: 0 12px 12px 12px;
+        width: 48px;
+        height: 48px;
       }
     }
   }
