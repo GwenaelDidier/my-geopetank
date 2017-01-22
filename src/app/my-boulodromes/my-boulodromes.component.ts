@@ -12,6 +12,7 @@ export class MyBoulodromesComponent implements OnInit, AfterViewInit {
 
   public boulodromes: FirebaseListObservable<any[]>;
   public boulodromeIsSelected:boolean=false;
+  public indexBoulodromeSelected:number;
 
   public index:string;
   public title: string='';
@@ -66,8 +67,9 @@ export class MyBoulodromesComponent implements OnInit, AfterViewInit {
     })
   }
 
-  public modifBoulodrome(boulodrome){
+  public modifBoulodrome(boulodrome, index){
     this.boulodromeIsSelected = true;
+    this.indexBoulodromeSelected = index;
     this.index = boulodrome.$key;
     this.title = boulodrome.nom;
     this.ville = boulodrome.ville;
@@ -100,6 +102,7 @@ export class MyBoulodromesComponent implements OnInit, AfterViewInit {
 
   cancelBoulodrome(){
     this.setViewForm(false);
+    this.indexBoulodromeSelected = null;
   }
 
   saveBoulodrome(){
@@ -116,6 +119,7 @@ export class MyBoulodromesComponent implements OnInit, AfterViewInit {
     };
 
     let key = this.index;
+    this.indexBoulodromeSelected = null;
     this.boulodromes.update(key, myBoulodrome);
   }
 

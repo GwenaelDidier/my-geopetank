@@ -7,13 +7,28 @@
 md-sidenav-layout{
 	height: 100%;
 }
-.itemBoulodrome{
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	align-self: center;
-	align-items: center;
+
+#listBoulodromes{
+  .listBoulodromesItem{
+    display: flex;
+    flex-direction: column;
+
+    .itemBoulodrome{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      align-self: center;
+      align-items: center;
+    }
+
+    .itemBoulodromeModification{
+      display: flex;
+      flex-direction: row;
+    }
+  }
 }
+
 md-list-item{
 	border-bottom: 1px solid #CCC;
 }
@@ -21,10 +36,28 @@ md-list-item{
 #contentBoulodrome{
 	padding-left: 3em;
   width: 30%;
+  min-width: 300px;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  .md-input-element{
+    margin-right: 24px;
+  }
 }
 
 .sebm-google-map-container {
   margin-top: 64px;
   height: 500px;
   width: 100%;
+  flex-shrink: 0.5;
 }
+
+#content{
+  flex-wrap: wrap;
+  margin-top: 64px;
+  #contentMap{
+    width: 95%;
+  }
+}
+
+

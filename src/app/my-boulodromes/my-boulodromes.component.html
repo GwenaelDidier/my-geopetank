@@ -1,9 +1,12 @@
 <div class="flex-container"
      fxLayout="row"
      fxLayout.xs="column"
+     fxLayout.sm="column"
      fxLayoutAlign="center flex-start"
-     fxLayoutAlign.xs="start">
-  <div fxFlex="30%" fxFlex.xs="40%" fxFlex.sm="40%" fxFlex.md="40%" class="flex-item">
+     fxLayoutAlign.xs="start"
+     fxLayoutAlign.sm="start"
+>
+  <div fxFlex="30%" fxFlex.xs="40%" fxFlex.sm="50%" fxFlex.md="40%" class="flex-item">
     <h1>Boulodromes</h1>
     <md-input placeholder="recherche" [(ngModel)]="recherche" name="recherche"></md-input>
 
@@ -12,9 +15,9 @@
         <md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>
       </div>
       <div *ngSwitchCase="'active'">
-        <md-list>
-          <md-list-item *ngFor="let boulodrome of boulodromes | async | myListFilter:recherche">
-            <div class="itemBoulodrome">
+        <md-list id="listBoulodromes">
+          <md-list-item *ngFor="let boulodrome of boulodromes | async | myListFilter:recherche; let i = index;" id="list-boulodrome-{{boulodrome.id}}" class="listBoulodromesItem">
+            <div class="itemBoulodrome"  md-line>
               <div class="itemBoulodromeDescription">
                 <h4 md-line>{{boulodrome.nom}} - {{boulodrome.secteur}}</h4>
                 <!--<p md-line>
@@ -22,12 +25,55 @@
                     <span>{{boulodrome.latitude}} / {{boulodrome.longitude}}</span>
                 </p>-->
               </div>
-              <div class="itemBoulodromeActionn">
-                <button md-icon-button (click)="modifBoulodrome(boulodrome)">
+              <div class="itemBoulodromeAction">
+                <button md-icon-button (click)="modifBoulodrome(boulodrome, i)">
                   <md-icon>info</md-icon>
                 </button>
               </div>
             </div>
+            <!--<div class="flex-container itemBoulodromeModification"  md-line *ngIf="boulodromeIsSelected && indexBoulodromeSelected === i">
+              <div fxLayout="row">
+                <md-input placeholder="Ville" disabled value="{{ville}}"></md-input>
+              </div>
+
+              <div fxLayout="row">
+                <md-input placeholder="Departement" disabled value="{{departement}}"></md-input>
+              </div>
+
+              <div fxLayout="row">
+                <md-input placeholder="Secteur" disabled value="{{secteur}}"></md-input>
+              </div>
+
+              <div fxLayout="row">
+                <md-input placeholder="Type" value="{{type}}" [(ngModel)]="type" name="type"></md-input>
+              </div>
+
+              <div fxLayout="row">
+                <md-input placeholder="Adresse" value="{{adresse}}" [(ngModel)]="adresse" name="adresse"></md-input>
+              </div>
+
+              <div fxLayout="row">
+                <md-input placeholder="Latitude" value="{{latitude}}" [(ngModel)]="latitude" name="latitude"></md-input>
+                <md-input placeholder="Longitude" value="{{longitude}}" [(ngModel)]="longitude" name="longitude"></md-input>
+              </div>
+
+
+              <div fxLayout="row" class="flex-center">
+                <md-input type="number" placeholder="Nombre de terrains" value="{{nbTerrains}}" [(ngModel)]="nbTerrains" name="nbTerrains"></md-input>
+                <md-checkbox [(ngModel)]="couvert" name="couvert" color="primary" >
+                  Couvert
+                </md-checkbox>
+              </div>
+
+              <div fxLayout="row">
+                <button md-raised-button (click)="cancelBoulodrome()">Fermer</button>
+                <button md-raised-button color="accent" (click)="toggleSeeBoulodrome()">
+                  <span [hidden]="!seeBoulodromeModeSolo">Ne plus voir</span>
+                  <span [hidden]="seeBoulodromeModeSolo">Voir</span>
+                </button>
+                <button md-raised-button color="primary" (click)="saveBoulodrome()">Valider</button>
+              </div>
+            </div>-->
           </md-list-item>
 
         </md-list>
@@ -36,59 +82,60 @@
 
   </div>
   <div fxFlex="70%" fxFlex.xs="60%" fxFlex.sm="60%" fxFlex.md="60%" class="flex-item">
-    <div id="contentBoulodrome" *ngIf="boulodromeIsSelected">
-      <h1>{{title}}</h1>
-      <div *ngIf="boulodromeIsSelected">
+    <div id="content" class="flex-container"
+         fxLayout="row"
+         fxLayout.xs="column"
+         fxLayoutAlign="center flex-start"
+         fxLayoutAlign.xs="start">
+      <div id="contentBoulodrome" *ngIf="boulodromeIsSelected">
+        <h1>{{title}}</h1>
+        <div *ngIf="boulodromeIsSelected" class="flex-container"
+             fxLayout="column"
+             fxLayout.xs="column"
+             fxLayoutAlign="center flex-start"
+             fxLayoutAlign.xs="start">
 
-        <div layout="row">
-          <md-input placeholder="Ville" disabled value="{{ville}}"></md-input>
+          <div fxLayout="row" fxLayoutAlign="flex-start center">
+            <md-input placeholder="Ville" disabled value="{{ville}}" class="mr24"></md-input>
+            <md-input placeholder="Secteur" disabled value="{{secteur}}" class="mr24"></md-input>
+            <md-input placeholder="Departement" disabled value="{{departement}}" class="mr24"></md-input>
+            <md-input placeholder="Type" value="{{type}}" [(ngModel)]="type" name="type"></md-input>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="flex-start center">
+            <md-input placeholder="Adresse" value="{{adresse}}" [(ngModel)]="adresse" name="adresse" class="mr24"></md-input>
+            <md-input placeholder="Latitude" value="{{latitude}}" [(ngModel)]="latitude" name="latitude" class="mr24"></md-input>
+            <md-input placeholder="Longitude" value="{{longitude}}" [(ngModel)]="longitude" name="longitude"></md-input>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="flex-start center">
+            <md-input type="number" placeholder="Nombre de terrains" value="{{nbTerrains}}" [(ngModel)]="nbTerrains" name="nbTerrains" class="mr24"></md-input>
+            <md-checkbox [(ngModel)]="couvert" name="couvert" color="primary" >
+              Couvert
+            </md-checkbox>
+          </div>
+
+          <br>
+          <div fxLayout="row" fxLayoutAlign="flex-start center">
+            <button md-raised-button (click)="cancelBoulodrome()" class="mr24">Fermer</button>
+            <button md-raised-button color="accent" (click)="toggleSeeBoulodrome()" class="mr24">
+              <span [hidden]="!seeBoulodromeModeSolo">Ne plus voir</span>
+              <span [hidden]="seeBoulodromeModeSolo">Voir</span>
+            </button>
+            <button md-raised-button color="primary" (click)="saveBoulodrome()">Valider</button>
+          </div>
+          <br>
         </div>
-
-        <div layout="row">
-          <md-input placeholder="Departement" disabled value="{{departement}}"></md-input>
-        </div>
-
-        <div layout="row">
-          <md-input placeholder="Secteur" disabled value="{{secteur}}"></md-input>
-        </div>
-
-        <div layout="row">
-          <md-input placeholder="Type" value="{{type}}" [(ngModel)]="type" name="type"></md-input>
-        </div>
-
-        <div layout="row">
-          <md-input placeholder="Adresse" value="{{adresse}}" [(ngModel)]="adresse" name="adresse"></md-input>
-        </div>
-
-        <div layout="row">
-          <md-input placeholder="Latitude" value="{{latitude}}" [(ngModel)]="latitude" name="latitude"></md-input>
-          <md-input placeholder="Longitude" value="{{longitude}}" [(ngModel)]="longitude" name="longitude"></md-input>
-        </div>
-
-
-        <div layout="row" class="flex-center">
-          <md-input type="number" placeholder="Nombre de terrains" value="{{nbTerrains}}" [(ngModel)]="nbTerrains" name="nbTerrains"></md-input>
-          <md-checkbox [(ngModel)]="couvert" name="couvert" color="primary" >
-            Couvert
-          </md-checkbox>
-        </div>
-
-        <div layout="row">
-          <button md-raised-button (click)="cancelBoulodrome()">Fermer</button>
-          <button md-raised-button color="accent" (click)="toggleSeeBoulodrome()">
-            <span [hidden]="!seeBoulodromeModeSolo">Ne plus voir</span>
-            <span [hidden]="seeBoulodromeModeSolo">Voir</span>
-          </button>
-          <button md-raised-button color="primary" (click)="saveBoulodrome()">Valider</button>
-        </div>
-
       </div>
+      <div id="contentMap">
+        <sebm-google-map *ngIf="showMap" [latitude]="lat" [longitude]="lng" [zoom]="zoom" #myMap>
+          <!--<sebm-google-map-marker [latitude]="markerInfoLatitude" [longitude]="markerInfoLongitude" *ngIf="modeInfoEnabled"></sebm-google-map-marker>-->
+          <googlemap-directive [markers] = "markers | myListFilter:recherche"></googlemap-directive>
+        </sebm-google-map>
+      </div>
+
     </div>
 
-    <sebm-google-map *ngIf="showMap" [latitude]="lat" [longitude]="lng" [zoom]="zoom" #myMap>
-      <!--<sebm-google-map-marker [latitude]="markerInfoLatitude" [longitude]="markerInfoLongitude" *ngIf="modeInfoEnabled"></sebm-google-map-marker>-->
-      <googlemap-directive [markers] = "markers | myListFilter:recherche"></googlemap-directive>
-    </sebm-google-map>
   </div>
 </div>
 

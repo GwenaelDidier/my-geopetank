@@ -1,5 +1,10 @@
-<div id="myConcours">
-  <div id="param-concours">
+<div id="myConcours" class="flex-container"
+     fxLayout="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="flex-start flex-start"
+     fxLayoutAlign.xs="start"
+     >
+  <div id="param-concours" fxLayout="column">
     <h2>Recherche de concours</h2>
     <div class="row-param-concours" id="param-concours-slider">
       <div class="flex">
@@ -71,9 +76,9 @@
       </div>
     </div>
 
-  </div>
+  </div >
 
-  <div [ngSwitch]='statusConcours' id="list-concours">
+  <div [ngSwitch]='statusConcours' id="list-concours" fxLayout="column" class="flex-container" fxLayoutAlign="flex-start center">
     <h2>Liste des concours</h2>
     <div *ngSwitchCase="'loading'" class="layout-flex flex-center">
       <md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>
@@ -122,7 +127,8 @@
       </div>
     </div>
   </div>
-  <div id="carte-concours">
+  <div id="carte-concours" fxLayout="row" class="flex-container" fxLayout="column" fxLayoutAlign="flex-start flex-start">
+    <h2>Carte</h2>
     <sebm-google-map *ngIf="showMap && statusConcours === 'active' " [latitude]="lat" [longitude]="lng" #myMap>
       <sebm-google-map-marker [latitude]="markerInfoLatitude" [longitude]="markerInfoLongitude" *ngIf="modeInfoEnabled"></sebm-google-map-marker>
     </sebm-google-map>
